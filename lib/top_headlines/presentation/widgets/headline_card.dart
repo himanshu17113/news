@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,7 +42,7 @@ class _TopHeadlineCardState extends State<TopHeadlineCard> {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 34),
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             const Text("Headlines",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -115,19 +116,27 @@ class _TopHeadlineCardState extends State<TopHeadlineCard> {
                         },
                         child: article!.urlToImage == null
                             ? Container(
-                                alignment: Alignment.center,
-                                margin: const EdgeInsets.only(left: 10),
-                                // width: context.deviceWidth() / 1.2,
+                                alignment: Alignment.bottomCenter,
+                                width: context.deviceWidth() - 20,
                                 height: context.deviceHeight() / 3,
+                                margin: const EdgeInsets.only(right: 10),
                                 decoration: BoxDecoration(
-                                    color: primaryColor,
                                     borderRadius: BorderRadius.circular(30)),
-                                child: const Text(
-                                  "Image Preview Unavailable",
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.white),
-                                ),
-                              )
+                                child: Container(
+                                  height: context.deviceHeight() / 13,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 10),
+                                  decoration: BoxDecoration(
+                                      color: primaryColorDark.withOpacity(0.7),
+                                      borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(30),
+                                          bottomRight: Radius.circular(30))),
+                                  child: Text(
+                                    article.title.toString(),
+                                    style: const TextStyle(
+                                        fontSize: 14, color: Colors.white),
+                                  ),
+                                ))
                             : Container(
                                 alignment: Alignment.bottomCenter,
                                 width: context.deviceWidth() - 20,
@@ -135,7 +144,7 @@ class _TopHeadlineCardState extends State<TopHeadlineCard> {
                                 margin: const EdgeInsets.only(right: 10),
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      image: NetworkImage(
+                                      image: CachedNetworkImageProvider(
                                           article.urlToImage.toString()),
                                       fit: BoxFit.cover,
                                     ),

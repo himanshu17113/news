@@ -5,22 +5,26 @@ import 'package:news/model/newsmodel.dart';
 import '../../../constant/constant.dart';
 
 class NewsService extends GetxController {
-  RxList<Article> newsList = <Article>[].obs;
+  List<Article> newsList = <Article>[];
+  List<Article> generalNews = <Article>[];
+
   static final Dio dio = Dio();
   @override
   void onInit() {
     fetchTopHeadline("in");
+    fetchEverything();
     super.onInit();
   }
 
-  Future<News> fetcchEverything(String query) async {
-    final String url =
-        "https://newsapi.org/v2/everything?q=$query&sortBy=popularity&apiKey=$apikey";
+  Future<News> fetchEverything() async {
+    const String url =
+        "https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=$apikey";
     try {
       final response = await dio.get(url);
       final topHeadline = News.fromMap(response.data);
       if (topHeadline.status == "ok" || topHeadline.articles != null) {
-        newsList.value = topHeadline.articles!;
+        generalNews = topHeadline.articles!;
+        update(['generalNews']);
       }
 
       return topHeadline;
@@ -38,7 +42,7 @@ class NewsService extends GetxController {
       final response = await dio.get(url);
       final topHeadline = News.fromMap(response.data);
       if (topHeadline.status == "ok" || topHeadline.articles != null) {
-        newsList.value = topHeadline.articles!;
+        newsList = topHeadline.articles!;
       }
 
       return topHeadline;

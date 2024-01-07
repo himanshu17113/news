@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => DynamicColorBuilder(
       builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) =>
           MaterialApp(
+     
             themeMode: ThemeMode.system,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme(lightColorScheme ??

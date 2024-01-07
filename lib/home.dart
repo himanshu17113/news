@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:news/search/presentation/search.dart';
 import 'package:news/top_headlines/presentation/widgets/general_news.dart';
 
@@ -27,7 +28,7 @@ class Home extends StatelessWidget {
                 Text("  Get the Latest\n  News Updates",
                     style: textTheme.displaySmall),
                 IconButton(
-                    onPressed: () => Navigator.pushReplacement(
+                    onPressed: () => Navigator.push(
                         context,
                         CustomPageRoute(
                             transitionDuration:
@@ -39,7 +40,10 @@ class Home extends StatelessWidget {
             ),
           ),
           const TopHeadlineCard(),
-          const SizedBox(height: 30),
+          const Gap(30),
+          const Text(
+            "      News", //style: AppTextStyles.headingMediumTextBlack
+          ),
           const VerticalNews()
           //GeneralNews(),
         ],

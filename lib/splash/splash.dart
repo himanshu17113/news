@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:news/constant/constant.dart';
+import 'package:news/search/service/search_controller_service.dart';
 import 'package:news/top_headlines/data/repository/top_headline_service.dart';
 import '../constant/pagerouter.dart';
 import '../home.dart';
@@ -22,8 +23,8 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    // Get.lazyPut<TopHeadlineService>(() => TopHeadlineService());
-    Get.put(NewsService());
+    Get.lazyPut<SearchxController>(() => SearchxController());
+    Get.put(NewsService(), permanent: true );
     _lottieController = AnimationController(vsync: this);
     _lottieController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {

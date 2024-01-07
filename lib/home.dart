@@ -47,9 +47,11 @@ class Home extends StatelessWidget {
               expandedTitleScale: 2,
               centerTitle: false,
               background: Container(
+                color: theme.scaffoldBackgroundColor,
                 alignment: Alignment.topRight,
                 padding: const EdgeInsets.only(top: 50, right: 20),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("  Get the Latest\n  News Updates",
                         style: textTheme.headlineLarge),

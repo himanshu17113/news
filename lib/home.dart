@@ -39,27 +39,34 @@ class Home extends StatelessWidget {
             floating: true,
             //  expandedHeight:
             flexibleSpace: FlexibleSpaceBar(
-              title: Text("  Get the Latest\n  News Updates",
-                  style: textTheme.headlineLarge),
-              collapseMode: CollapseMode.parallax,
+              // title: Text("  Get the Latest\n  News Updates",
+              //     style: textTheme.headlineLarge),
+              collapseMode: CollapseMode.pin,
               titlePadding:
                   const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-              expandedTitleScale: 1.2,
+              expandedTitleScale: 2,
               centerTitle: false,
               background: Container(
                 alignment: Alignment.topRight,
                 padding: const EdgeInsets.only(top: 50, right: 20),
-                child: IconButton(
-                  onPressed: () => Navigator.push(
-                      context,
-                      CustomPageRoute(
-                          transitionDuration: const Duration(milliseconds: 700),
-                          child: const SeachScreen(),
-                          begin: const Offset(-1, 0))),
-                  icon: const Icon(
-                    Icons.search,
-                    size: 28,
-                  ),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("  Get the Latest\n  News Updates",
+                        style: textTheme.headlineLarge),
+                    IconButton(
+                      onPressed: () => Navigator.push(
+                          context,
+                          CustomPageRoute(
+                              transitionDuration:
+                                  const Duration(milliseconds: 700),
+                              child: const SeachScreen(),
+                              begin: const Offset(-1, 0))),
+                      icon: const Icon(
+                        Icons.search,
+                        size: 28,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

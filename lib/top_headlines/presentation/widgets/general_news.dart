@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news/utils/cards.dart';
 import 'package:news/utils/news_card.dart';
 import '../../../utils/box_shimmer.dart';
 import '../../data/repository/top_headline_service.dart';
@@ -19,20 +20,16 @@ class VerticalNews extends StatelessWidget {
           final sortedArticles = cardController.generalNews
             ..sort((a, b) => b.publishedAt!.compareTo(a.publishedAt!));
           return sortedArticles.isNotEmpty
-              ? Expanded(
-                  child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      itemCount: sortedArticles.length,
-                      itemBuilder: (context, i) =>
-                          NewsCard(article: sortedArticles[i])),
-                )
-              : Expanded(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 10,
-                      itemBuilder: (context, i) {
-                        return const CardShimmer();
-                      }));
+              ? SliverList.builder(
+                  //  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  itemCount: sortedArticles.length,
+                  itemBuilder: (context, i) =>
+                      Cards(article: sortedArticles[i]))
+              : SliverList.builder(
+                  itemCount: 10,
+                  itemBuilder: (context, i) {
+                    return const CardShimmer();
+                  });
         });
   }
 }

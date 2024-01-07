@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:news/constant/constant.dart';
 import 'package:news/search/presentation/search.dart';
 import 'package:news/top_headlines/presentation/widgets/general_news.dart';
-
 import 'constant/pagerouter.dart';
-import 'top_headlines/presentation/widgets/headline_card.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -18,32 +16,55 @@ class Home extends StatelessWidget {
     return Scaffold(
       drawerEnableOpenDragGesture: false,
       key: scaffoldKey,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50),
-            child: Row(
-              children: [
-                Text("  Get the Latest\n  News Updates",
-                    style: textTheme.displaySmall),
-                IconButton(
-                    onPressed: () => Navigator.push(
-                        context,
-                        CustomPageRoute(
-                            transitionDuration:
-                                const Duration(milliseconds: 700),
-                            child: const SeachScreen(),
-                            begin: const Offset(-1, 0))),
-                    icon: const Icon(Icons.search))
-              ],
+      body: CustomScrollView(
+        //crossAxisAlignment: CrossAxisAlignment.start,
+        slivers: [
+          SliverAppBar(
+            backgroundColor: theme.colorScheme.secondaryContainer,
+
+            expandedHeight: 10,
+            collapsedHeight: context.deviceHeight() * .1,
+            //      excludeHeaderSemantics: true,
+            // title: const Text(
+            // ),
+            titleTextStyle: textTheme.displaySmall,
+            toolbarHeight: context.deviceHeight() * .1,
+
+            stretch: false,
+            forceMaterialTransparency: true,
+            scrolledUnderElevation: 50,
+            //      collapsedHeight: 45,
+            //  pinned: true,
+            //    snap: true,
+            floating: true,
+            //  expandedHeight:
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text("  Get the Latest\n  News Updates",
+                  style: textTheme.headlineLarge),
+              collapseMode: CollapseMode.parallax,
+              titlePadding:
+                  const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+              expandedTitleScale: 1.2,
+              centerTitle: false,
+              background: Container(
+                alignment: Alignment.topRight,
+                padding: const EdgeInsets.only(top: 50, right: 20),
+                child: IconButton(
+                  onPressed: () => Navigator.push(
+                      context,
+                      CustomPageRoute(
+                          transitionDuration: const Duration(milliseconds: 700),
+                          child: const SeachScreen(),
+                          begin: const Offset(-1, 0))),
+                  icon: const Icon(
+                    Icons.search,
+                    size: 28,
+                  ),
+                ),
+              ),
             ),
           ),
-          const TopHeadlineCard(),
-          const Gap(30),
-          const Text(
-            "      News", //style: AppTextStyles.headingMediumTextBlack
-          ),
+
           const VerticalNews()
           //GeneralNews(),
         ],

@@ -8,8 +8,7 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
-      systemStatusBarContrastEnforced: false
-      ));
+      systemStatusBarContrastEnforced: false));
   runApp(const MyApp());
 }
 
@@ -21,11 +20,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => DynamicColorBuilder(
       builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) =>
           MaterialApp(
-     
             themeMode: ThemeMode.system,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme(lightColorScheme ??
-                ColorScheme.fromSeed(seedColor: Colors.white)),
+                ColorScheme.fromSeed(seedColor: Colors.purple)),
             darkTheme: AppTheme.darkTheme(darkColorScheme),
             home: const SplashScreen(),
           ));

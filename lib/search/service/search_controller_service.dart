@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:news/constant/apistore.dart';
 import 'package:news/model/newsmodel.dart';
 import '../../../constant/constant.dart';
 
@@ -15,11 +16,9 @@ class SearchxController extends GetxController {
 
   static final Dio dio = Dio();
 
-  Future<News> fetchEverything(String query) async {
-     final String url =
-        "https://newsapi.org/v2/everything?q=$query&sortBy=popularity&apiKey=$apikey";
+  Future<News> fetchEverything(String query) async { 
     try {
-      final response = await dio.get(url);
+      final response = await dio.get(Apis.getEverythingbyPopularity(query));
       final topHeadline = News.fromMap(response.data);
       if (topHeadline.status == "ok" || topHeadline.articles != null) {
         newsList.value = topHeadline.articles!;
@@ -32,11 +31,9 @@ class SearchxController extends GetxController {
       rethrow;
     }
   }
-    Future<News> fetchHeadlines(String query) async {
-     final String url =
-        "https://newsapi.org/v2/top-headlines?q=$query&apiKey=$apikey";
+    Future<News> fetchHeadlines(String query) async { 
     try {
-      final response = await dio.get(url);
+      final response = await dio.get(Apis.getHeadline(query));
       final topHeadline = News.fromMap(response.data);
       if (topHeadline.status == "ok" || topHeadline.articles != null) {
         newsList.value = topHeadline.articles!;

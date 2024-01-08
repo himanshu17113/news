@@ -3,8 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:news/constant/apistore.dart';
 import 'package:news/model/newsmodel.dart';
-import '../../../constant/constant.dart';
-
+ 
 class SearchxController extends GetxController {
   RxList<Article> newsList = <Article>[].obs;
   @override

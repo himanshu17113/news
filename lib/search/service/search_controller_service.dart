@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:news/constant/apistore.dart';
 import 'package:news/model/newsmodel.dart';
- 
+
 class SearchxController extends GetxController {
   RxList<Article> newsList = <Article>[].obs;
   @override
@@ -15,10 +15,11 @@ class SearchxController extends GetxController {
 
   static final Dio dio = Dio();
 
-  Future<News> fetchEverything(String query) async { 
+  Future<News> fetchEverything(String query) async {
     try {
       final response = await dio.get(Apis.getEverythingbyPopularity(query));
       final topHeadline = News.fromMap(response.data);
+
       if (topHeadline.status == "ok" || topHeadline.articles != null) {
         newsList.value = topHeadline.articles!;
       }
@@ -30,12 +31,18 @@ class SearchxController extends GetxController {
       rethrow;
     }
   }
-    Future<News> fetchHeadlines(String query) async { 
+
+  Future<News> fetchHeadlines(String query) async {
     try {
       final response = await dio.get(Apis.getHeadline(query));
       final topHeadline = News.fromMap(response.data);
+
       if (topHeadline.status == "ok" || topHeadline.articles != null) {
-        newsList.value = topHeadline.articles!;
+        if (topHeadline.articles!.isEmpty) {
+          await fetchEverything(query);
+        } else {
+          newsList.value = topHeadline.articles!;
+        }
       }
 
       return topHeadline;
@@ -45,5 +52,4 @@ class SearchxController extends GetxController {
       rethrow;
     }
   }
-
 }

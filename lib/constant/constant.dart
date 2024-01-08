@@ -6,4 +6,4 @@ extension DeviceSize on BuildContext {
   double deviceWidth() => MediaQuery.of(this).size.width;
 }
 
-const String apikey = "2d2118c3873e4f06b8ebe3d02ab35cf2";
+

@@ -1,6 +1,6 @@
-import 'package:news/constant/constant.dart';
-
+ 
 class Apis {
+  static const String apikey = "99eba290233e41f2b36d5c55d72d70bc";
   static getHeadline(final String query) =>
       "https://newsapi.org/v2/top-headlines?q=$query&apiKey=$apikey";
   static getEverythingbyPopularity(final String query) =>

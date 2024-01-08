@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news/utils/cards.dart';
-import 'package:news/utils/news_card.dart';
-import '../../../utils/box_shimmer.dart';
+ import '../../../utils/box_shimmer.dart';
 import '../../data/repository/top_headline_service.dart';
 
 class VerticalNews extends StatelessWidget {

@@ -17,7 +17,7 @@ class Cards extends StatelessWidget {
     final TextTheme textTheme = theme.textTheme;
     // .apply(displayColor: theme.colorScheme.onSecondaryContainer);
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.all(5),
       child: Card(
         child: GestureDetector(
           onTap: () {
@@ -35,7 +35,7 @@ class Cards extends StatelessWidget {
             }));
           },
           child: Padding(
-            padding: const EdgeInsets.all(5),
+            padding: const EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -51,6 +51,7 @@ class Cards extends StatelessWidget {
                           fit: BoxFit.cover),
                       borderRadius: BorderRadius.circular(20)),
                 ),
+                const Gap(10),
                 Text(
                     "${article.source?.name.toString()} • ${dateFormatter(article.publishedAt.toString(), "mm:ss")}",
                     style: textTheme.titleSmall),

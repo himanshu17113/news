@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news/constant/constant.dart';
 import 'package:news/search/presentation/search.dart';
 import 'package:news/top_headlines/presentation/widgets/general_news.dart';
+import 'package:news/top_headlines/presentation/widgets/headline_card.dart';
 import 'constant/pagerouter.dart';
 
 class Home extends StatelessWidget {
@@ -17,30 +18,16 @@ class Home extends StatelessWidget {
       drawerEnableOpenDragGesture: false,
       key: scaffoldKey,
       body: CustomScrollView(
-        //crossAxisAlignment: CrossAxisAlignment.start,
         slivers: [
           SliverAppBar(
-            backgroundColor: theme.colorScheme.secondaryContainer,
-
-            expandedHeight: 10,
-            collapsedHeight: context.deviceHeight() * .1,
-            //      excludeHeaderSemantics: true,
-            // title: const Text(
-            // ),
+            collapsedHeight: context.deviceHeight() * .12,
             titleTextStyle: textTheme.displaySmall,
-            toolbarHeight: context.deviceHeight() * .1,
-
+            toolbarHeight: context.deviceHeight() * .02,
             stretch: false,
             forceMaterialTransparency: true,
             scrolledUnderElevation: 50,
-            //      collapsedHeight: 45,
-            //  pinned: true,
-            //    snap: true,
             floating: true,
-            //  expandedHeight:
             flexibleSpace: FlexibleSpaceBar(
-              // title: Text("  Get the Latest\n  News Updates",
-              //     style: textTheme.headlineLarge),
               collapseMode: CollapseMode.pin,
               titlePadding:
                   const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
@@ -49,7 +36,7 @@ class Home extends StatelessWidget {
               background: Container(
                 color: theme.scaffoldBackgroundColor,
                 alignment: Alignment.topRight,
-                padding: const EdgeInsets.only(top: 50, right: 20),
+                padding: const EdgeInsets.only(top: 50, right: 20, bottom: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -73,9 +60,10 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
-
+          const SliverToBoxAdapter(
+            child: TopHeadlineCard(),
+          ),
           const VerticalNews()
-          //GeneralNews(),
         ],
       ),
     );

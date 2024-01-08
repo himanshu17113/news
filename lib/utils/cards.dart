@@ -15,7 +15,7 @@ class Cards extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final TextTheme textTheme = theme.textTheme;
-    // .apply(displayColor: theme.colorScheme.onSecondaryContainer);
+
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Card(
@@ -56,7 +56,8 @@ class Cards extends StatelessWidget {
                     "${article.source?.name.toString()} • ${dateFormatter(article.publishedAt.toString(), "mm:ss")}",
                     style: textTheme.titleSmall),
                 const Gap(5),
-                Text(article.title.toString(), style: textTheme.titleLarge),
+                Text(article.title.toString(),
+                    textAlign: TextAlign.center, style: textTheme.titleLarge),
               ],
             ),
           ),

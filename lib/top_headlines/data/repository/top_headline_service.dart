@@ -44,7 +44,6 @@ class NewsService extends GetxController {
       if (topHeadline.status == "ok" || topHeadline.articles != null) {
         newsList = topHeadline.articles!;
       }
-
       return topHeadline;
     } on SocketException {
       throw Exception("please Connect to the internet");

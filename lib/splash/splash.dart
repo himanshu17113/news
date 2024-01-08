@@ -17,14 +17,13 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  // int count = 0;
   late final AnimationController _lottieController;
 
   @override
   void initState() {
     super.initState();
     Get.lazyPut<SearchxController>(() => SearchxController());
-    Get.put(NewsService(), permanent: true );
+    Get.put(NewsService(), permanent: true);
     _lottieController = AnimationController(vsync: this);
     _lottieController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {

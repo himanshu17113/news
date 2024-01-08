@@ -52,16 +52,9 @@ class _TopHeadlineCardState extends State<TopHeadlineCard> {
                     fontWeight: FontWeight.w700,
                   )),
               PopupMenuButton(
-                  //    padding: EdgeInsets.only(left: 140),
                   position: PopupMenuPosition.over,
                   onSelected: _onCountrySelected,
                   icon: const Icon(Icons.dashboard),
-                  // child: const Text(
-                  //   "Select a Country",
-                  // style: TextStyle(
-                  //   fontSize: 14,
-                  // ),
-                  // ),
                   itemBuilder: (context) {
                     return CountriesService.countryNames.map((country) {
                       return PopupMenuItem(
@@ -74,20 +67,10 @@ class _TopHeadlineCardState extends State<TopHeadlineCard> {
           ),
           FutureBuilder(
             future: cardController.fetchTopHeadline(selectedCountry),
-            // initialData: InitialData,
             builder: (BuildContext context, AsyncSnapshot<News?> snapshot) {
               debugPrint("future called");
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const BoxShimmer();
-                // Shimmer.fromColors(
-                //     baseColor: const Color(0xffF0EAEA),
-                //     highlightColor: const Color(0xffD0CDCD),
-                //     child: Row(
-                //       children: List.generate(
-                //         2,
-                //         (index) => BoxShimmer(),
-                //       ),
-                //     ));
               } else if (snapshot.connectionState == ConnectionState.done &&
                   snapshot.data != null) {
                 final sortedArticles = snapshot.data!.articles
@@ -185,13 +168,7 @@ class _TopHeadlineCardState extends State<TopHeadlineCard> {
                     alignment: Alignment.center,
                     child: const CircularProgressIndicator());
               }
-
-              //   final vm = ref.watch(topHeadlineVM(selectedCountry));
-              // return vm.when(
-              //     data: (data) {
             },
-            // error: (e, s) => Text(e.toString()),
-            // loading: () =>
           ),
         ],
       ),
